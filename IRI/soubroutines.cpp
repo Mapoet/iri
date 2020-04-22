@@ -5150,28 +5150,31 @@ void gts7(int iyd, double sec, double alt, double glat, double glong, double stl
 	gts3c.s = gts3c.g0 / (ttest.tinf - gts3c.tlb);
 	// lower thermosphere temp variations not significant for
 	// density above 300 km
-	if(alt < 300) {
+	if (alt < 300) {
 		if ((v2 == 1) || (alast >= 300)) {
 			meso7.tn1[1] = lower7.ptm[6] * parm7.ptl[0][0] / (1 - csw.sw[17] * glob7s(&parm7.ptl[0][0]));
-			meso7.tn1[2] = ptm(3)*ptl(1, 2) / (1. - sw(18)*glob7s(ptl(1, 2)))
-				tn1(4) = ptm(8)*ptl(1, 3) / (1. - sw(18)*glob7s(ptl(1, 3)))
-				tn1(5) = ptm(5)*ptl(1, 4) / (1. - sw(18)*sw(20)*glob7s(ptl(1, 4)))
-				tgn1(2) = ptm(9)*pma(1, 9)*(1. + sw(18)*sw(20)*glob7s(pma(1, 9)))
-				$   *tn1(5)*tn1(5) / (ptm(5)*ptl(1, 4))**2
+			meso7.tn1[2] = lower7.ptm[2] * parm7.ptl[0][1] / (1 - csw.sw[17] * glob7s(&parm7.ptl[0][1]));
+			meso7.tn1[3] = lower7.ptm[7] * parm7.ptl[0][2] / (1 - csw.sw[17] * glob7s(&parm7.ptl[0][2]));
+			meso7.tn1[4] = lower7.ptm[4] * parm7.ptl[0][3] /
+				(1 - csw.sw[17] * csw.sw[19] * glob7s(&parm7.ptl[0][3]));
+			meso7.tgn1[1] = lower7.ptm[8] * parm7.pma[0][8] *
+				(1 + csw.sw[17] * csw.sw[19] * glob7s(&parm7.pma[0][8])) * meso7.tn1[4] *
+				meso7.tn1[4] / pow(lower7.ptm[4] * parm7.ptl[0][3], 2);
 		}
-		endif
-		else
-			tn1(2) = ptm(7)*ptl(1, 1)
-			tn1(3) = ptm(3)*ptl(1, 2)
-			tn1(4) = ptm(8)*ptl(1, 3)
-			tn1(5) = ptm(5)*ptl(1, 4)
-			tgn1(2) = ptm(9)*pma(1, 9)
-			$  *tn1(5)*tn1(5) / (ptm(5)*ptl(1, 4))**2
+	}
+	else {
+		meso7.tn1[1] = lower7.ptm[6] * parm7.ptl[0][0];
+		meso7.tn1[2] = lower7.ptm[2] * parm7.ptl[0][1];
+		meso7.tn1[3] = lower7.ptm[7] * parm7.ptl[0][2];
+		meso7.tn1[4] = lower7.ptm[4] * parm7.ptl[0][3];
+		meso7.tgn1[1] = lower7.ptm[8] * parm7.pma[0][8] *
+			meso7.tn1[4] * meso7.tn1[4] / pow(lower7.ptm[4] * parm7.ptl[0][3], 2);
 			endif
 			c
 			z0 = zn1(4)
 			t0 = tn1(4)
 			tr12 = 1.;
+	}
 }
 
 double globe7(double yrd, double sec, double xlat, double xlong,
