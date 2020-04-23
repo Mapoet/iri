@@ -21,6 +21,9 @@
     <ClCompile Include="soubroutines.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Iri.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="subroutines.h">
@@ -30,6 +33,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="commons.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Iri.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

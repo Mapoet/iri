@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Iri.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="soubroutines.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="commons.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="Iri.h" />
     <ClInclude Include="subroutines.h" />
   </ItemGroup>
   <ItemGroup>
